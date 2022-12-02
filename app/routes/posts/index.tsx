@@ -19,7 +19,6 @@ function PostIndex() {
 
   return (
     <div className='ml-5'>
-        <h2 className='text-center text-4xl'>Posts</h2>
         {posts.map(post => (
             <Link 
                 className='block underline text-slate-600 text-2xl'
