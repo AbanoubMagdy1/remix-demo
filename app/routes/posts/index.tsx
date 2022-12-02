@@ -1,25 +1,15 @@
 import { json } from '@remix-run/node'
 import { Link, useLoaderData } from '@remix-run/react'
 import React from 'react'
-
-interface PostI{
-    id: number,
-    title: string,
-    body: string
-}
+import { getPosts } from '~/models/posts.server'
 
 interface LoaderData {
-    posts: PostI[]
+    posts: Awaited<ReturnType<typeof getPosts>>;
 }
-
-const POSTS: PostI[] = [
-    {id: 1, title: 'Post 1', body: 'This is my first post'},
-    {id: 2, title: 'Post 2', body: 'This is my second post'},
-] 
 
 export const loader = async () => {
     return json<LoaderData>({
-        posts: POSTS
+        posts: await getPosts()
     })
 
 }
@@ -29,11 +19,12 @@ function PostIndex() {
 
   return (
     <div className='ml-5'>
-        <h2 className='text-center'>Posts</h2>
+        <h2 className='text-center text-4xl'>Posts</h2>
         {posts.map(post => (
             <Link 
                 className='block underline text-slate-600 text-2xl'
-                key={post.id} to={`/posts/${post.id}`}
+                key={post.id}
+                to={`/posts/${post.id}`}
             >
             {post.title}
         </Link>
