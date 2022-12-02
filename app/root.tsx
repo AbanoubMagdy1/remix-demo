@@ -24,11 +24,11 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="bg-slate-100">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
+        {process.env.NODE_ENV !== 'production' && <LiveReload />}
       </body>
     </html>
   );
