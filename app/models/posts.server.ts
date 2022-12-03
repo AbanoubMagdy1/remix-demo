@@ -1,3 +1,5 @@
+import { generateId } from "~/utils";
+
 export interface PostI{
     id: string,
     title: string,
@@ -15,4 +17,15 @@ export async function getPosts(): Promise<PostI[]>{
 
 export async function getPost(id: string): Promise<PostI | undefined>{
     return await POSTS.find(post => post.id === id);
+}
+
+export async function createPost(post: Omit<PostI, 'id'>): Promise<PostI>{
+    const newPost : PostI = {
+        title: post.title,
+        body: post.body,
+        id: generateId()
+    }
+    await POSTS.push(newPost);
+    console.log(POSTS);
+    return newPost;
 }

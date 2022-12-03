@@ -19,9 +19,12 @@ function PostIndex() {
 
   return (
     <div className='ml-5'>
+        <Link className='text-center w-fit mx-auto text-xl my-3 block underline hover:text-blue-700' to="/posts/new">
+            Create new post
+        </Link>
         {posts.map(post => (
             <Link 
-                className='block underline text-slate-600 text-2xl'
+                className='block underline text-slate-600 text-2xl hover:text-blue-700'
                 key={post.id}
                 to={`/posts/${post.id}`}
             >
