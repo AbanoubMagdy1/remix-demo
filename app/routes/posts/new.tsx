@@ -38,7 +38,7 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 const inputClasses = 'block w-full border border-gray-300 rounded-md shadow-md p-2 focus:outline-none'
-const labelClasses = 'block text-xl text-gray-700 mb-2';
+const labelClasses = 'block text-xl text-gray-500 mb-2';
 
 function NewPost() {
   const formErrors = useActionData() as FormErrors  
@@ -58,7 +58,7 @@ function NewPost() {
 
         </div>
         {submission && <Loader/>}
-        <button className='bg-blue-500 text-white p-2 rounded-md shadow-md hover:bg-blue-600'>
+        <button disabled={Boolean(submission)} className='bg-blue-500 text-white p-2 rounded-md shadow-md hover:bg-blue-600'>
             Create
         </button>
     </Form>

@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+button:disabled{
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+button:disabled:hover{
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
