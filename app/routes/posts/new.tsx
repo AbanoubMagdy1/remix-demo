@@ -1,9 +1,11 @@
 import type { ActionFunction} from '@remix-run/node';
 import { redirect} from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { Form, useActionData } from '@remix-run/react'
+import { Form, useActionData, useTransition } from '@remix-run/react'
 import invariant from 'tiny-invariant';
 import { createPost } from '~/models/posts.server';
+
+import Loader from '~/components/loader'
 
 type FormErrors = {
     title: string | null;
@@ -11,6 +13,8 @@ type FormErrors = {
 } | undefined;
 
 export const action: ActionFunction = async ({ request }) => {
+    //To be removed when we have a better way to handle form submission
+    await new Promise(resolve => setTimeout(resolve, 1000))
     const form = await request.formData();
     const title = form.get('title');
     const body = form.get('body');
@@ -38,6 +42,7 @@ const labelClasses = 'block text-xl text-gray-700 mb-2';
 
 function NewPost() {
   const formErrors = useActionData() as FormErrors  
+  const {submission} = useTransition()
 
   return (
     <Form method='post' className='flex flex-col gap-8 w-80 max-w-full mx-auto mt-10'>
@@ -52,6 +57,7 @@ function NewPost() {
             {formErrors?.body && <small className='text-red-500 text-sm'>{formErrors.body}</small>}
 
         </div>
+        {submission && <Loader/>}
         <button className='bg-blue-500 text-white p-2 rounded-md shadow-md hover:bg-blue-600'>
             Create
         </button>
