@@ -19,7 +19,9 @@ function PostIndex() {
 
   return (
     <div className='ml-5'>
-        <Link className='text-center w-fit mx-auto text-xl my-3 block underline hover:text-blue-700' to="/posts/new">
+        <Link className='bg-gradient-to-r from-green-400 to-blue-500
+         hover:from-green-500 hover:to-blue-600 text-white w-fit
+         mx-auto text-xl my-3 block p-3 rounded-md' to="/posts/new">
             Create new post
         </Link>
         <div className='flex flex-col gap-6 mt-10'>      
